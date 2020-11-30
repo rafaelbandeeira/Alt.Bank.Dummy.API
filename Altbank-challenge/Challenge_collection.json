@@ -1,0 +1,1697 @@
+{
+	"info": {
+		"_postman_id": "86d081d1-0659-4815-b77d-491ce17d387b",
+		"name": "Alt.Bank Challenge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. Path Coverage",
+			"item": [
+				{
+					"name": "Get all employee data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6c693468-5522-4986-b077-a839f731d771",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}v1/employees",
+							"host": [
+								"{{baseUrl}}v1"
+							],
+							"path": [
+								"employees"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a single employee data",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}v1/employee/:id",
+							"host": [
+								"{{baseUrl}}v1"
+							],
+							"path": [
+								"employee",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a new record in database",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"age\": \"23\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}v1/create",
+							"host": [
+								"{{baseUrl}}v1"
+							],
+							"path": [
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update an employee record",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}v1/update/:id",
+							"host": [
+								"{{baseUrl}}v1"
+							],
+							"path": [
+								"update",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "21"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete an employee record",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}v1/delete/:id",
+							"host": [
+								"{{baseUrl}}v1"
+							],
+							"path": [
+								"delete",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "caffd687-c650-49a3-ad8f-5918a737b581",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "c801555c-b0ea-4244-8cff-42711f5d0232",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Endpoint is reacheable\", function () {",
+							"    pm.response.to.not.have.status(500);",
+							"});"
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "3. Content-Type Coverage",
+			"item": [
+				{
+					"name": "JSON",
+					"item": [
+						{
+							"name": "Get all employee data",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}v1/employees",
+									"host": [
+										"{{baseUrl}}v1"
+									],
+									"path": [
+										"employees"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get a single employee data",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}v1/employee/:id",
+									"host": [
+										"{{baseUrl}}v1"
+									],
+									"path": [
+										"employee",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create a new record in database",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "57969e20-13d4-4213-8ab7-50cdf974943b",
+										"exec": [
+											"pm.test(\"Verify if the API accepts a REQUEST content-type is JSON\", () => {",
+											"    pm.expect(pm.request.headers.get('Content-Type')).to.eql('application/json');",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"test\",\n    \"salary\": \"123\",\n    \"age\": \"23\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}v1/create",
+									"host": [
+										"{{baseUrl}}v1"
+									],
+									"path": [
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update an employee record",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "c396d6ef-2a08-43db-af76-0904d4cab1f1",
+										"exec": [
+											"pm.test(\"Verify if the API accepts a REQUEST content-type is JSON\", () => {",
+											"    pm.expect(pm.request.headers.get('Content-Type')).to.eql('application/json');",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"test\",\n    \"salary\": \"123\",\n    \"age\": \"23\",\n    \"id\": \"21\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}v1/update/:id",
+									"host": [
+										"{{baseUrl}}v1"
+									],
+									"path": [
+										"update",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "21"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete an employee record",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}v1/delete/:id",
+									"host": [
+										"{{baseUrl}}v1"
+									],
+									"path": [
+										"delete",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "a9f8ae76-b31b-4504-9bfe-19d80bf6999f",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "13f7387b-901a-4199-9050-8c5e41517847",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Verify if the RESPONSE content-type is JSON\", () => {",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');",
+							"});"
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "4. Status Code Classes",
+			"item": [
+				{
+					"name": "2xx",
+					"item": [
+						{
+							"name": "Get all employee data",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}v1/employees",
+									"host": [
+										"{{baseUrl}}v1"
+									],
+									"path": [
+										"employees"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get a single employee data",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}v1/employee/:id",
+									"host": [
+										"{{baseUrl}}v1"
+									],
+									"path": [
+										"employee",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create a new record in database",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"test\",\n    \"salary\": \"123\",\n    \"age\": \"23\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}v1/create",
+									"host": [
+										"{{baseUrl}}v1"
+									],
+									"path": [
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update an employee record",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}v1/update/:id",
+									"host": [
+										"{{baseUrl}}v1"
+									],
+									"path": [
+										"update",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "21"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete an employee record",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}v1/delete/:id",
+									"host": [
+										"{{baseUrl}}v1"
+									],
+									"path": [
+										"delete",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "56a63e4c-1fe3-4742-85fc-814b0d21f067",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "a52a36b0-953f-464a-8749-ef907b6ae810",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"The endpoint returns status 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "4xx",
+					"item": [
+						{
+							"name": "Get all employee data",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}v1/employees",
+									"host": [
+										"{{baseUrl}}v1"
+									],
+									"path": [
+										"employees"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get a single employee data",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}v1/employee/:id",
+									"host": [
+										"{{baseUrl}}v1"
+									],
+									"path": [
+										"employee",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create a new record in database",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"test\",\n    \"salary\": \"123\",\n    \"age\": \"23\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}v1/create",
+									"host": [
+										"{{baseUrl}}v1"
+									],
+									"path": [
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update an employee record",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}v1/update/:id",
+									"host": [
+										"{{baseUrl}}v1"
+									],
+									"path": [
+										"update",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "21"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete an employee record",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}v1/delete/:id",
+									"host": [
+										"{{baseUrl}}v1"
+									],
+									"path": [
+										"delete",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "795fd08e-73f7-42b5-8a8e-6ee41033b067",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "b01b017e-4378-4628-a47a-5a4b633c621d",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"The endpoint returns status 429\", () => {",
+									"    pm.response.to.have.status(429);",
+									"});"
+								]
+							}
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "6. Status Codes Coverage",
+			"item": [
+				{
+					"name": "Status Code 404",
+					"item": [
+						{
+							"name": "Get a single employee data",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}v1/employee/:id",
+									"host": [
+										"{{baseUrl}}v1"
+									],
+									"path": [
+										"employee",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "88"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update an employee record",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}v1/update/:id",
+									"host": [
+										"{{baseUrl}}v1"
+									],
+									"path": [
+										"update",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "283"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete an employee record",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}v1/delete/:id",
+									"host": [
+										"{{baseUrl}}v1"
+									],
+									"path": [
+										"delete",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "874"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "3f209aa2-01f0-4fac-b514-db7ba3c5da3b",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "e8de1f9b-e8ba-4900-a3eb-81fb2a3daf1f",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"The endpoint returns status 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});"
+								]
+							}
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "2f9afeb0-6eaa-4924-93e9-7b81ad754892",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "876510cc-76b3-4b6f-b40e-b5d2f4550648",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "7. Response Body Properties Coverage",
+			"item": [
+				{
+					"name": "Get all employee data",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "53d73b80-3157-43bb-a4ff-29c16985b9ca",
+								"exec": [
+									"const jsonSchema = {",
+									"    \"$schema\": \"http://json-schema.org/draft-07/schema\",",
+									"    \"$id\": \"http://example.com/example.json\",",
+									"    \"type\": \"object\",",
+									"    \"title\": \"The root schema\",",
+									"    \"description\": \"The root schema comprises the entire JSON document.\",",
+									"    \"default\": {},",
+									"    \"examples\": [",
+									"        {",
+									"            \"status\": \"success\",",
+									"            \"data\": [",
+									"                {",
+									"                    \"id\": \"1\",",
+									"                    \"employee_name\": \"Tiger Nixon\",",
+									"                    \"employee_salary\": \"320800\",",
+									"                    \"employee_age\": \"61\",",
+									"                    \"profile_image\": \"\"",
+									"                }",
+									"            ]",
+									"        }",
+									"    ],",
+									"    \"required\": [",
+									"        \"status\",",
+									"        \"data\"",
+									"    ],",
+									"    \"properties\": {",
+									"        \"status\": {",
+									"            \"$id\": \"#/properties/status\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The status schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"success\"",
+									"            ]",
+									"        },",
+									"        \"data\": {",
+									"            \"$id\": \"#/properties/data\",",
+									"            \"type\": \"array\",",
+									"            \"title\": \"The data schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": [],",
+									"            \"examples\": [",
+									"                [",
+									"                    {",
+									"                        \"id\": \"1\",",
+									"                        \"employee_name\": \"Tiger Nixon\",",
+									"                        \"employee_salary\": \"320800\",",
+									"                        \"employee_age\": \"61\",",
+									"                        \"profile_image\": \"\"",
+									"                    }",
+									"                ]",
+									"            ],",
+									"            \"additionalItems\": true,",
+									"            \"items\": {",
+									"                \"$id\": \"#/properties/data/items\",",
+									"                \"anyOf\": [",
+									"                    {",
+									"                        \"$id\": \"#/properties/data/items/anyOf/0\",",
+									"                        \"type\": \"object\",",
+									"                        \"title\": \"The first anyOf schema\",",
+									"                        \"description\": \"An explanation about the purpose of this instance.\",",
+									"                        \"default\": {},",
+									"                        \"examples\": [",
+									"                            {",
+									"                                \"id\": \"1\",",
+									"                                \"employee_name\": \"Tiger Nixon\",",
+									"                                \"employee_salary\": \"320800\",",
+									"                                \"employee_age\": \"61\",",
+									"                                \"profile_image\": \"\"",
+									"                            }",
+									"                        ],",
+									"                        \"required\": [",
+									"                            \"id\",",
+									"                            \"employee_name\",",
+									"                            \"employee_salary\",",
+									"                            \"employee_age\",",
+									"                            \"profile_image\"",
+									"                        ],",
+									"                        \"properties\": {",
+									"                            \"id\": {",
+									"                                \"$id\": \"#/properties/data/items/anyOf/0/properties/id\",",
+									"                                \"type\": \"string\",",
+									"                                \"title\": \"The id schema\",",
+									"                                \"description\": \"An explanation about the purpose of this instance.\",",
+									"                                \"default\": \"\",",
+									"                                \"examples\": [",
+									"                                    \"1\"",
+									"                                ]",
+									"                            },",
+									"                            \"employee_name\": {",
+									"                                \"$id\": \"#/properties/data/items/anyOf/0/properties/employee_name\",",
+									"                                \"type\": \"string\",",
+									"                                \"title\": \"The employee_name schema\",",
+									"                                \"description\": \"An explanation about the purpose of this instance.\",",
+									"                                \"default\": \"\",",
+									"                                \"examples\": [",
+									"                                    \"Tiger Nixon\"",
+									"                                ]",
+									"                            },",
+									"                            \"employee_salary\": {",
+									"                                \"$id\": \"#/properties/data/items/anyOf/0/properties/employee_salary\",",
+									"                                \"type\": \"string\",",
+									"                                \"title\": \"The employee_salary schema\",",
+									"                                \"description\": \"An explanation about the purpose of this instance.\",",
+									"                                \"default\": \"\",",
+									"                                \"examples\": [",
+									"                                    \"320800\"",
+									"                                ]",
+									"                            },",
+									"                            \"employee_age\": {",
+									"                                \"$id\": \"#/properties/data/items/anyOf/0/properties/employee_age\",",
+									"                                \"type\": \"string\",",
+									"                                \"title\": \"The employee_age schema\",",
+									"                                \"description\": \"An explanation about the purpose of this instance.\",",
+									"                                \"default\": \"\",",
+									"                                \"examples\": [",
+									"                                    \"61\"",
+									"                                ]",
+									"                            },",
+									"                            \"profile_image\": {",
+									"                                \"$id\": \"#/properties/data/items/anyOf/0/properties/profile_image\",",
+									"                                \"type\": \"string\",",
+									"                                \"title\": \"The profile_image schema\",",
+									"                                \"description\": \"An explanation about the purpose of this instance.\",",
+									"                                \"default\": \"\",",
+									"                                \"examples\": [",
+									"                                    \"\"",
+									"                                ]",
+									"                            }",
+									"                        },",
+									"                        \"additionalProperties\": true",
+									"                    }",
+									"                ]",
+									"            }",
+									"        }",
+									"    },",
+									"    \"additionalProperties\": true",
+									"}",
+									"",
+									"pm.environment.set(\"jsonSchema\", jsonSchema);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "84b08ba1-edb6-47ef-8cb4-b88b9c539af7",
+								"exec": [
+									"const jsonSchema = {",
+									"    \"$schema\": \"http://json-schema.org/draft-07/schema\",",
+									"    \"$id\": \"http://example.com/example.json\",",
+									"    \"type\": \"object\",",
+									"    \"title\": \"The root schema\",",
+									"    \"description\": \"The root schema comprises the entire JSON document.\",",
+									"    \"default\": {},",
+									"    \"examples\": [",
+									"        {",
+									"            \"status\": \"success\",",
+									"            \"data\": [",
+									"                {",
+									"                    \"id\": \"1\",",
+									"                    \"employee_name\": \"Tiger Nixon\",",
+									"                    \"employee_salary\": \"320800\",",
+									"                    \"employee_age\": \"61\",",
+									"                    \"profile_image\": \"\"",
+									"                }",
+									"            ]",
+									"        }",
+									"    ],",
+									"    \"required\": [",
+									"        \"status\",",
+									"        \"data\"",
+									"    ],",
+									"    \"properties\": {",
+									"        \"status\": {",
+									"            \"$id\": \"#/properties/status\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The status schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"success\"",
+									"            ]",
+									"        },",
+									"        \"data\": {",
+									"            \"$id\": \"#/properties/data\",",
+									"            \"type\": \"array\",",
+									"            \"title\": \"The data schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": [],",
+									"            \"examples\": [",
+									"                [",
+									"                    {",
+									"                        \"id\": \"1\",",
+									"                        \"employee_name\": \"Tiger Nixon\",",
+									"                        \"employee_salary\": \"320800\",",
+									"                        \"employee_age\": \"61\",",
+									"                        \"profile_image\": \"\"",
+									"                    }",
+									"                ]",
+									"            ],",
+									"            \"additionalItems\": true,",
+									"            \"items\": {",
+									"                \"$id\": \"#/properties/data/items\",",
+									"                \"anyOf\": [",
+									"                    {",
+									"                        \"$id\": \"#/properties/data/items/anyOf/0\",",
+									"                        \"type\": \"object\",",
+									"                        \"title\": \"The first anyOf schema\",",
+									"                        \"description\": \"An explanation about the purpose of this instance.\",",
+									"                        \"default\": {},",
+									"                        \"examples\": [",
+									"                            {",
+									"                                \"id\": \"1\",",
+									"                                \"employee_name\": \"Tiger Nixon\",",
+									"                                \"employee_salary\": \"320800\",",
+									"                                \"employee_age\": \"61\",",
+									"                                \"profile_image\": \"\"",
+									"                            }",
+									"                        ],",
+									"                        \"required\": [",
+									"                            \"id\",",
+									"                            \"employee_name\",",
+									"                            \"employee_salary\",",
+									"                            \"employee_age\",",
+									"                            \"profile_image\"",
+									"                        ],",
+									"                        \"properties\": {",
+									"                            \"id\": {",
+									"                                \"$id\": \"#/properties/data/items/anyOf/0/properties/id\",",
+									"                                \"type\": \"string\",",
+									"                                \"title\": \"The id schema\",",
+									"                                \"description\": \"An explanation about the purpose of this instance.\",",
+									"                                \"default\": \"\",",
+									"                                \"examples\": [",
+									"                                    \"1\"",
+									"                                ]",
+									"                            },",
+									"                            \"employee_name\": {",
+									"                                \"$id\": \"#/properties/data/items/anyOf/0/properties/employee_name\",",
+									"                                \"type\": \"string\",",
+									"                                \"title\": \"The employee_name schema\",",
+									"                                \"description\": \"An explanation about the purpose of this instance.\",",
+									"                                \"default\": \"\",",
+									"                                \"examples\": [",
+									"                                    \"Tiger Nixon\"",
+									"                                ]",
+									"                            },",
+									"                            \"employee_salary\": {",
+									"                                \"$id\": \"#/properties/data/items/anyOf/0/properties/employee_salary\",",
+									"                                \"type\": \"string\",",
+									"                                \"title\": \"The employee_salary schema\",",
+									"                                \"description\": \"An explanation about the purpose of this instance.\",",
+									"                                \"default\": \"\",",
+									"                                \"examples\": [",
+									"                                    \"320800\"",
+									"                                ]",
+									"                            },",
+									"                            \"employee_age\": {",
+									"                                \"$id\": \"#/properties/data/items/anyOf/0/properties/employee_age\",",
+									"                                \"type\": \"string\",",
+									"                                \"title\": \"The employee_age schema\",",
+									"                                \"description\": \"An explanation about the purpose of this instance.\",",
+									"                                \"default\": \"\",",
+									"                                \"examples\": [",
+									"                                    \"61\"",
+									"                                ]",
+									"                            },",
+									"                            \"profile_image\": {",
+									"                                \"$id\": \"#/properties/data/items/anyOf/0/properties/profile_image\",",
+									"                                \"type\": \"string\",",
+									"                                \"title\": \"The profile_image schema\",",
+									"                                \"description\": \"An explanation about the purpose of this instance.\",",
+									"                                \"default\": \"\",",
+									"                                \"examples\": [",
+									"                                    \"\"",
+									"                                ]",
+									"                            }",
+									"                        },",
+									"                        \"additionalProperties\": true",
+									"                    }",
+									"                ]",
+									"            }",
+									"        }",
+									"    },",
+									"    \"additionalProperties\": true",
+									"}",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}v1/employees",
+							"host": [
+								"{{baseUrl}}v1"
+							],
+							"path": [
+								"employees"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a single employee data",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "57b374d1-facb-44a2-99eb-2914bc56059f",
+								"exec": [
+									"const jsonSchema = {",
+									"    \"$schema\": \"http://json-schema.org/draft-07/schema\",",
+									"    \"$id\": \"http://example.com/example.json\",",
+									"    \"type\": \"object\",",
+									"    \"title\": \"The root schema\",",
+									"    \"description\": \"The root schema comprises the entire JSON document.\",",
+									"    \"default\": {},",
+									"    \"examples\": [",
+									"        {",
+									"            \"status\": \"success\",",
+									"            \"data\": {",
+									"                \"id\": \"1\",",
+									"                \"employee_name\": \"Tiger Nixon\",",
+									"                \"employee_salary\": \"320800\",",
+									"                \"employee_age\": \"61\",",
+									"                \"profile_image\": \"\"",
+									"            }",
+									"        }",
+									"    ],",
+									"    \"required\": [",
+									"        \"status\",",
+									"        \"data\"",
+									"    ],",
+									"    \"properties\": {",
+									"        \"status\": {",
+									"            \"$id\": \"#/properties/status\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The status schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"success\"",
+									"            ]",
+									"        },",
+									"        \"data\": {",
+									"            \"$id\": \"#/properties/data\",",
+									"            \"type\": \"object\",",
+									"            \"title\": \"The data schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": {},",
+									"            \"examples\": [",
+									"                {",
+									"                    \"id\": \"1\",",
+									"                    \"employee_name\": \"Tiger Nixon\",",
+									"                    \"employee_salary\": \"320800\",",
+									"                    \"employee_age\": \"61\",",
+									"                    \"profile_image\": \"\"",
+									"                }",
+									"            ],",
+									"            \"required\": [",
+									"                \"id\",",
+									"                \"employee_name\",",
+									"                \"employee_salary\",",
+									"                \"employee_age\",",
+									"                \"profile_image\"",
+									"            ],",
+									"            \"properties\": {",
+									"                \"id\": {",
+									"                    \"$id\": \"#/properties/data/properties/id\",",
+									"                    \"type\": \"string\",",
+									"                    \"title\": \"The id schema\",",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",",
+									"                    \"default\": \"\",",
+									"                    \"examples\": [",
+									"                        \"1\"",
+									"                    ]",
+									"                },",
+									"                \"employee_name\": {",
+									"                    \"$id\": \"#/properties/data/properties/employee_name\",",
+									"                    \"type\": \"string\",",
+									"                    \"title\": \"The employee_name schema\",",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",",
+									"                    \"default\": \"\",",
+									"                    \"examples\": [",
+									"                        \"Tiger Nixon\"",
+									"                    ]",
+									"                },",
+									"                \"employee_salary\": {",
+									"                    \"$id\": \"#/properties/data/properties/employee_salary\",",
+									"                    \"type\": \"string\",",
+									"                    \"title\": \"The employee_salary schema\",",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",",
+									"                    \"default\": \"\",",
+									"                    \"examples\": [",
+									"                        \"320800\"",
+									"                    ]",
+									"                },",
+									"                \"employee_age\": {",
+									"                    \"$id\": \"#/properties/data/properties/employee_age\",",
+									"                    \"type\": \"string\",",
+									"                    \"title\": \"The employee_age schema\",",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",",
+									"                    \"default\": \"\",",
+									"                    \"examples\": [",
+									"                        \"61\"",
+									"                    ]",
+									"                },",
+									"                \"profile_image\": {",
+									"                    \"$id\": \"#/properties/data/properties/profile_image\",",
+									"                    \"type\": \"string\",",
+									"                    \"title\": \"The profile_image schema\",",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",",
+									"                    \"default\": \"\",",
+									"                    \"examples\": [",
+									"                        \"\"",
+									"                    ]",
+									"                }",
+									"            },",
+									"            \"additionalProperties\": true",
+									"        }",
+									"    },",
+									"    \"additionalProperties\": true",
+									"}",
+									"",
+									"pm.environment.set(\"jsonSchema\", jsonSchema);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}v1/employee/:id",
+							"host": [
+								"{{baseUrl}}v1"
+							],
+							"path": [
+								"employee",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a new record in database",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "d2da6429-bba4-45af-a3fb-a64224ccfaa4",
+								"exec": [
+									"const jsonSchema = {",
+									"    \"$schema\": \"http://json-schema.org/draft-07/schema\",",
+									"    \"$id\": \"http://example.com/example.json\",",
+									"    \"type\": \"object\",",
+									"    \"title\": \"The root schema\",",
+									"    \"description\": \"The root schema comprises the entire JSON document.\",",
+									"    \"default\": {},",
+									"    \"examples\": [",
+									"        {",
+									"            \"status\": \"success\",",
+									"            \"data\": {",
+									"                \"name\": \"test\",",
+									"                \"salary\": \"123\",",
+									"                \"age\": \"23\",",
+									"                \"id\": 25",
+									"            }",
+									"        }",
+									"    ],",
+									"    \"required\": [",
+									"        \"status\",",
+									"        \"data\"",
+									"    ],",
+									"    \"properties\": {",
+									"        \"status\": {",
+									"            \"$id\": \"#/properties/status\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The status schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"success\"",
+									"            ]",
+									"        },",
+									"        \"data\": {",
+									"            \"$id\": \"#/properties/data\",",
+									"            \"type\": \"object\",",
+									"            \"title\": \"The data schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": {},",
+									"            \"examples\": [",
+									"                {",
+									"                    \"name\": \"test\",",
+									"                    \"salary\": \"123\",",
+									"                    \"age\": \"23\",",
+									"                    \"id\": 25",
+									"                }",
+									"            ],",
+									"            \"required\": [",
+									"                \"name\",",
+									"                \"salary\",",
+									"                \"age\",",
+									"                \"id\"",
+									"            ],",
+									"            \"properties\": {",
+									"                \"name\": {",
+									"                    \"$id\": \"#/properties/data/properties/name\",",
+									"                    \"type\": \"string\",",
+									"                    \"title\": \"The name schema\",",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",",
+									"                    \"default\": \"\",",
+									"                    \"examples\": [",
+									"                        \"test\"",
+									"                    ]",
+									"                },",
+									"                \"salary\": {",
+									"                    \"$id\": \"#/properties/data/properties/salary\",",
+									"                    \"type\": \"string\",",
+									"                    \"title\": \"The salary schema\",",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",",
+									"                    \"default\": \"\",",
+									"                    \"examples\": [",
+									"                        \"123\"",
+									"                    ]",
+									"                },",
+									"                \"age\": {",
+									"                    \"$id\": \"#/properties/data/properties/age\",",
+									"                    \"type\": \"string\",",
+									"                    \"title\": \"The age schema\",",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",",
+									"                    \"default\": \"\",",
+									"                    \"examples\": [",
+									"                        \"23\"",
+									"                    ]",
+									"                },",
+									"                \"id\": {",
+									"                    \"$id\": \"#/properties/data/properties/id\",",
+									"                    \"type\": \"integer\",",
+									"                    \"title\": \"The id schema\",",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",",
+									"                    \"default\": 0,",
+									"                    \"examples\": [",
+									"                        25",
+									"                    ]",
+									"                }",
+									"            },",
+									"            \"additionalProperties\": true",
+									"        }",
+									"    },",
+									"    \"additionalProperties\": true",
+									"}",
+									"",
+									"pm.environment.set(\"jsonSchema\", jsonSchema);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"test\",\n    \"salary\": \"123\",\n    \"age\": \"23\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}v1/create",
+							"host": [
+								"{{baseUrl}}v1"
+							],
+							"path": [
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update an employee record",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "66f68b47-2cbb-4c11-9900-04d990fcefc9",
+								"exec": [
+									"const jsonSchema = {",
+									"    \"$schema\": \"http://json-schema.org/draft-07/schema\",",
+									"    \"$id\": \"http://example.com/example.json\",",
+									"    \"type\": \"object\",",
+									"    \"title\": \"The root schema\",",
+									"    \"description\": \"The root schema comprises the entire JSON document.\",",
+									"    \"default\": {},",
+									"    \"examples\": [",
+									"        {",
+									"            \"status\": \"success\",",
+									"            \"data\": [],",
+									"            \"message\": \"Successfully! Record has been updated.\"",
+									"        }",
+									"    ],",
+									"    \"required\": [",
+									"        \"status\",",
+									"        \"data\",",
+									"        \"message\"",
+									"    ],",
+									"    \"properties\": {",
+									"        \"status\": {",
+									"            \"$id\": \"#/properties/status\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The status schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"success\"",
+									"            ]",
+									"        },",
+									"        \"data\": {",
+									"            \"$id\": \"#/properties/data\",",
+									"            \"type\": \"array\",",
+									"            \"title\": \"The data schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": [],",
+									"            \"examples\": [",
+									"                []",
+									"            ],",
+									"            \"additionalItems\": true,",
+									"            \"items\": {",
+									"                \"$id\": \"#/properties/data/items\"",
+									"            }",
+									"        },",
+									"        \"message\": {",
+									"            \"$id\": \"#/properties/message\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The message schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"Successfully! Record has been updated.\"",
+									"            ]",
+									"        }",
+									"    },",
+									"    \"additionalProperties\": true",
+									"}",
+									"",
+									"pm.environment.set(\"jsonSchema\", jsonSchema);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}v1/update/:id",
+							"host": [
+								"{{baseUrl}}v1"
+							],
+							"path": [
+								"update",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "21"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete an employee record",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "b0ffffcd-4179-4ba3-b8ef-ec23343f3423",
+								"exec": [
+									"const jsonSchema = {",
+									"    \"$schema\": \"http://json-schema.org/draft-07/schema\",",
+									"    \"$id\": \"http://example.com/example.json\",",
+									"    \"type\": \"object\",",
+									"    \"title\": \"The root schema\",",
+									"    \"description\": \"The root schema comprises the entire JSON document.\",",
+									"    \"default\": {},",
+									"    \"examples\": [",
+									"        {",
+									"            \"status\": \"success\",",
+									"            \"message\": \"successfully! deleted Records\"",
+									"        }",
+									"    ],",
+									"    \"required\": [",
+									"        \"status\",",
+									"        \"message\"",
+									"    ],",
+									"    \"properties\": {",
+									"        \"status\": {",
+									"            \"$id\": \"#/properties/status\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The status schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"success\"",
+									"            ]",
+									"        },",
+									"        \"message\": {",
+									"            \"$id\": \"#/properties/message\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The message schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"successfully! deleted Records\"",
+									"            ]",
+									"        }",
+									"    },",
+									"    \"additionalProperties\": true",
+									"}",
+									"",
+									"pm.environment.set(\"jsonSchema\", jsonSchema);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}v1/delete/:id",
+							"host": [
+								"{{baseUrl}}v1"
+							],
+							"path": [
+								"delete",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "9ed21257-03f4-480e-bd29-13531c4a59af",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "27ff15ce-9742-461a-a587-f6008975885b",
+						"type": "text/javascript",
+						"exec": [
+							"const jsonSchema = pm.environment.get(\"jsonSchema\");",
+							"",
+							"pm.test(\"The response body returns all the properties\", () => {",
+							"    pm.response.to.jsonSchema(jsonSchema);",
+							"})"
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

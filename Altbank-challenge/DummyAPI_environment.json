@@ -1,0 +1,19 @@
+{
+	"id": "261e65a9-8436-4494-adbb-1e2a3c7a26ce",
+	"name": "DummyAPI",
+	"values": [
+		{
+			"key": "baseUrl",
+			"value": "http://dummy.restapiexample.com/api/",
+			"enabled": true
+		},
+		{
+			"key": "jsonSchema",
+			"value": "",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2020-11-30T15:51:16.949Z",
+	"_postman_exported_using": "Postman/7.36.0"
+}

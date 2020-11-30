@@ -1,6 +1,6 @@
 # Approach Breakdown
 
-baseUrl: dummy.restapiexample.com/api/
+baseUrl: dummy.restapiexample.com/api/  
 Project risks: not applicable as there is no client / acceptance criteria for the API.  
 Identified test process risks:   
 * Documentation not available/incomplete  

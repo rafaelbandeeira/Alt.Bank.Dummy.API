@@ -23,7 +23,7 @@ Pact testing: possible, but short-handed due to the lack of documentation. The J
 Test coverage model: possible, but short-handed due to API capabilities.
 
 ## Test Plan
-Selected approaches: strategies chosen for the API under-testing  
+Selected approaches: strategies applied to the API testing  
 * Test coverage model: specifies multiple black-box testing layers to test an API and its various aspects. The first layer is the weakest and the last layer is the strongest, meaning the complexity and coverage increases as you go down the layers.  
 * Pact test: Using a pre-defined model, it's possible to compare if the output matches the contract, increasing reliability between consumer and provider.
    

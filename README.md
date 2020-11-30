@@ -49,16 +49,7 @@ A folder was created for each layer and the ones that were covered by other laye
 * baseUrl: to simplify the access to the URI  
 * jsonSchema: I used the pre-test section to specify the JsonSchema of each request and add it to an environment variable, so a the test ran in the folder could have access to that data without writting the same script in multiple requests.
     
-This test suite uses Newman for scripted runs and HTMLExtra to generate the report. To run the two together, use this command in the project folder
+This test suite uses Newman for scripted runs and HTMLExtra to generate the report. To run the two together, run `newman run collection.json -r htmlextra` in the project folder.  
+Make sure Newman is installed by running the command `npm install -g newman` and `npm install -g newman-reporter-htmlextra` for the HTMLExtra.  
 
-    newman run collection.json -r htmlextra
-    
-Make sure Newman is installed by running the command
-
-    npm install -g newman
-    
-And, for the HTMLExtra
-
-    npm install -g newman-reporter-htmlextra
-    
 To access the report generated when the test suite was first run, copy the project to your machine and open the html file in "folder/newman/Alt.Bank Challenge-2020-11-30-15-56-01-687-0".

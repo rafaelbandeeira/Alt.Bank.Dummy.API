@@ -29,15 +29,16 @@ Selected approaches: strategies chosen for the API under-testing
 The counting is done per method/endpoint, not per different samples.
 The test cases number are the sum of all the assertions, not requests (they were separated in multiple folders for clarity).
 
-|            Coverage           |  Possible  |  Covered  |  Total # of tests  |
-1. Paths                        |      5     |     5     |         5          |
-2. Operations*                  |      5     |     5     |         5          | 
-3. Content-type                 |      7     |     7     |         12         |
-4. Status code classes          |      10    |     10    |         22         |
-5. Parameters*                  |      3     |     3     |         22         |
-6. Status codes*                |      13    |     13    |         25         |
-7. Response body properties***  |      5     |     5     |         30         |
-8. Operation flows**            |     --     |    --     |        --          |
+|            Coverage            |  Possible  |  Covered  |  Total # of tests  |
+|--------------------------------|------------|-----------|--------------------|
+|1. Paths                        |      5     |     5     |         5          |
+|2. Operations*                  |      5     |     5     |         5          | 
+|3. Content-type                 |      7     |     7     |         12         |
+|4. Status code classes          |      10    |     10    |         22         |
+|5. Parameters*                  |      3     |     3     |         22         |
+|6. Status codes*                |      13    |     13    |         25         |
+|7. Response body properties***  |      5     |     5     |         30         |
+|8. Operation flows**            |      --    |     --    |         --         |
 
 * These layers were either partially or completely covered by/in another layer. The ones which were completely covered had their folders omitted.
 ** It is not possible to exercise this layer due to API limitations and no documentation specifying the consumer flow.

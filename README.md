@@ -16,10 +16,10 @@ Total number of methods: 4
     
 # Test Strategies
 
-Risk-based testing: not applicable as no risks were identified.
-Code coverage: not applicable, the API source-code is not available for debugging.
-Compatibility test: not applicable, the API has only one version.
-Pact testing: possible, but short-handed due to the lack of documentation. The JSON samples provided were used to guide this approach.
+Risk-based testing: not applicable as no risks were identified.  
+Code coverage: not applicable, the API source-code is not available for debugging.  
+Compatibility test: not applicable, the API has only one version.  
+Pact testing: possible, but short-handed due to the lack of documentation. The JSON samples provided were used to guide this approach.  
 Test coverage model: possible, but short-handed due to API capabilities.
 
 ## Test Plan

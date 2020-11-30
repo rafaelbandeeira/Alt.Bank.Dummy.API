@@ -41,8 +41,8 @@ The test cases number are the sum of all the assertions, not requests (they were
 |8. Operation flows**            |      --    |     --    |         --         |
 
 \* These layers were either partially or completely covered by/in another layer. The ones which were completely covered had their folders omitted.
-** It is not possible to exercise this layer due to API limitations and no documentation specifying the consumer flow.
-*** The Pact test was covered in this layer.
+\** It is not possible to exercise this layer due to API limitations and no documentation specifying the consumer flow.
+\*** The Pact test was covered in this layer.
 
 # Test Suite Structure
 A folder was created for each layer and the ones that were covered by other layers had their folders omitted. In the environment variables section, you will find two different variables:

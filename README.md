@@ -40,8 +40,8 @@ The test cases number are the sum of all the assertions, not requests (they were
 |7. Response body properties***  |      5     |     5     |         30         |
 |8. Operation flows**            |      --    |     --    |         --         |
 
-\* These layers were either partially or completely covered by/in another layer. The ones which were completely covered had their folders omitted.
-\** It is not possible to exercise this layer due to API limitations and no documentation specifying the consumer flow.
+\* These layers were either partially or completely covered by/in another layer. The ones which were completely covered had their folders omitted.  
+\** It is not possible to exercise this layer due to API limitations and no documentation specifying the consumer flow.  
 \*** The Pact test was covered in this layer.
 
 # Test Suite Structure

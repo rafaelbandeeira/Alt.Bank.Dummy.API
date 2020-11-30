@@ -1,11 +1,11 @@
 # Approach Breakdown
 
 baseUrl: dummy.restapiexample.com/api/
-Project risks: not applicable as there is no client / acceptance criteria for the API
+Project risks: not applicable as there is no client / acceptance criteria for the API.  
 Identified test process risks:   
 * Documentation not available/incomplete  
 * API behaviour is static, which blocks most testing techniques  
-* Low server capacity, which makes running multiple tests difficult (returns 429, too many requests)
+* Low server capacity, which makes running multiple tests difficult (returns 429, too many requests)  
 Weapons of choice (tools):  
 * JsonSchema Tool: generates a JSON schema to compare response/request bodies against specified JSON. Available here: https://jsonschema.net/  
 * Postman: open-source tool for API manipulation. The lack of able time shortened the tool options. Among the choices, Postman was the simplest and could provide a semi-automated approach. My preferred choice was REST-Assured, but the risk of not meeting the deadline would be increased.  

@@ -3,12 +3,12 @@
 baseUrl: dummy.restapiexample.com/api/
 Project risks: not applicable as there is no client / acceptance criteria for the API
 Identified test process risks:   
-    * Documentation not available/incomplete  
-    * API behaviour is static, which blocks most testing techniques  
-    * Low server capacity, which makes running multiple tests difficult (returns 429, too many requests)
+* Documentation not available/incomplete  
+* API behaviour is static, which blocks most testing techniques  
+* Low server capacity, which makes running multiple tests difficult (returns 429, too many requests)
 Weapons of choice (tools):  
-    * JsonSchema Tool: generates a JSON schema to compare response/request bodies against specified JSON. Available here: https://jsonschema.net/  
-    * Postman: open-source tool for API manipulation. The lack of able time shortened the tool options. Among the choices, Postman was the simplest and could provide a semi-automated approach. My preferred choice was REST-Assured, but the risk of not meeting the deadline would be increased.  
+* JsonSchema Tool: generates a JSON schema to compare response/request bodies against specified JSON. Available here: https://jsonschema.net/  
+* Postman: open-source tool for API manipulation. The lack of able time shortened the tool options. Among the choices, Postman was the simplest and could provide a semi-automated approach. My preferred choice was REST-Assured, but the risk of not meeting the deadline would be increased.  
 Total number of endpoints: 5
 Total number of methods: 4
     
@@ -22,8 +22,8 @@ Test coverage model: possible, but short-handed due to API capabilities.
 
 # Test Plan
 Selected approaches: strategies chosen for the API under-testing  
-    * Test coverage model: specifies multiple black-box testing layers to test an API and its various aspects. The first layer is the weakest and the last layer is the strongest, meaning the complexity and coverage increases as you go down the layers.  
-    * Pact test: Using a pre-defined model, it's possible to compare if the output matches the contract, increasing reliability between consumer and provider.
+* Test coverage model: specifies multiple black-box testing layers to test an API and its various aspects. The first layer is the weakest and the last layer is the strongest, meaning the complexity and coverage increases as you go down the layers.  
+* Pact test: Using a pre-defined model, it's possible to compare if the output matches the contract, increasing reliability between consumer and provider.
    
 # TEST COVERAGE MODEL
 The counting is done per method/endpoint, not per different samples.
@@ -46,8 +46,8 @@ The test cases number are the sum of all the assertions, not requests (they were
 
 # Test Suite Structure
 A folder was created for each layer and the ones that were covered by other layers had their folders omitted. In the environment variables section, you will find two different variables:  
-    * baseUrl: to simplify the access to the URI  
-    * jsonSchema: I used the pre-test section to specify the JsonSchema of each request and add it to an environment variable, so a the test ran in the folder could have access to that data without writting the same script in multiple requests.
+* baseUrl: to simplify the access to the URI  
+* jsonSchema: I used the pre-test section to specify the JsonSchema of each request and add it to an environment variable, so a the test ran in the folder could have access to that data without writting the same script in multiple requests.
     
 This test suite uses Newman for scripted runs and HTMLExtra to generate the report. To run the two together, use this command in the project folder
 

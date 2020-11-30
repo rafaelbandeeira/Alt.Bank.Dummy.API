@@ -20,12 +20,12 @@ Compatibility test: not applicable, the API has only one version.
 Pact testing: possible, but short-handed due to the lack of documentation. The JSON samples provided were used to guide this approach.
 Test coverage model: possible, but short-handed due to API capabilities.
 
-# Test Plan
+## Test Plan
 Selected approaches: strategies chosen for the API under-testing  
 * Test coverage model: specifies multiple black-box testing layers to test an API and its various aspects. The first layer is the weakest and the last layer is the strongest, meaning the complexity and coverage increases as you go down the layers.  
 * Pact test: Using a pre-defined model, it's possible to compare if the output matches the contract, increasing reliability between consumer and provider.
    
-# TEST COVERAGE MODEL
+## Test Coverage Model
 The counting is done per method/endpoint, not per different samples.
 The test cases number are the sum of all the assertions, not requests (they were separated in multiple folders for clarity).
 
@@ -44,7 +44,7 @@ The test cases number are the sum of all the assertions, not requests (they were
 \** It is not possible to exercise this layer due to API limitations and no documentation specifying the consumer flow.  
 \*** The Pact test was covered in this layer.
 
-# Test Suite Structure
+## Test Suite Structure
 A folder was created for each layer and the ones that were covered by other layers had their folders omitted. In the environment variables section, you will find two different variables:  
 * baseUrl: to simplify the access to the URI  
 * jsonSchema: I used the pre-test section to specify the JsonSchema of each request and add it to an environment variable, so a the test ran in the folder could have access to that data without writting the same script in multiple requests.
